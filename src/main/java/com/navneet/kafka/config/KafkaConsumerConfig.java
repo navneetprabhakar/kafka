@@ -5,7 +5,6 @@ import com.navneet.kafka.model.KafkaMessageRequest;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -48,12 +47,10 @@ public class KafkaConsumerConfig {
      * @return
      */
     @Bean
-    //@ConditionalOnMissingBean(name = "kafkaTopic")
     public ConsumerFactory<String, KafkaMessageRequest> consumerFactory(){
         Map<String, Object> properties= new HashMap<>();
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaConstants.getBootstrapAddress());
         properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, kafkaConstants.getAutoOffsetResetConfig());
-        //properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
         properties.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG,
                 "org.apache.kafka.clients.consumer.RoundRobinAssignor");
         properties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, kafkaConstants.getMaxPollRecordsConfig());

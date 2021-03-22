@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author navneetprabhakar
  */
 @RestController
-@RequestMapping("v1/kafka")
+@RequestMapping("v1")
 public class KafkaController {
 
     @Autowired
